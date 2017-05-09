@@ -9,7 +9,7 @@ import * as _ from 'lodash';
  *
  * @return {Function} The new restricted function.
  */
-function onceClone(func) {
+function once(func) {
 
 }
 
