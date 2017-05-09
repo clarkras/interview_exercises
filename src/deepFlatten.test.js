@@ -7,7 +7,7 @@ import * as _ from 'lodash';
  *
  * @return {Array} A new array.
  */
-function deepflattenClone(array) {
+function flattenDeepClone(array) {
 
 }
 

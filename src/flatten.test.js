@@ -1,6 +1,5 @@
 import * as _ from 'lodash';
 
-
 /**
  * Flattens an array a single level deep.
  *
