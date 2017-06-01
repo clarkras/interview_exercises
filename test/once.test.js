@@ -10,7 +10,7 @@ import * as _ from 'lodash';
  * @return {Function} The new restricted function.
  */
 function once(func) {
-
+  return _.once(func);
 }
 
 describe('once', () => {
@@ -21,7 +21,7 @@ describe('once', () => {
     });
 
     it('calls the function once', () => {
-        const mockOnce = _.once(mock);
+        const mockOnce = once(mock);
         mockOnce(1);
         mockOnce(2);
         expect(mock).toHaveBeenCalledTimes(1);
