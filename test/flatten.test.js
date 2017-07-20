@@ -12,6 +12,11 @@ function flatten(array) {
 }
 
 describe('flatten', () => {
+    it('flattens an empty array', () => {
+        const array = flatten([]);
+        expect(array).toEqual([]);
+    });
+
     it('flattens an already flattened array', () => {
         const array = flatten([1, 2, 3, 4, 5]);
         expect(array).toEqual([1, 2, 3, 4, 5]);
