@@ -1,9 +1,10 @@
 import * as _ from 'lodash';
 
 /**
- * Creates a function that is restricted to invoking func once. Repeat calls to the
- * function return the value of the first invocation. The func is invoked with the
- * this binding and arguments of the created function.
+ * Creates a function that is restricted to invoking a function once. Repeat calls to the
+ * function return the value of the first invocation.
+ *
+ * The func is invoked with the this binding and arguments of the created function.
  *
  * @param {Function} func The function to restrict.
  *
@@ -14,17 +15,30 @@ function once(func) {
 }
 
 describe('once', () => {
-    let mock;
+    let subject;
 
     beforeEach(() => {
-        mock = jest.fn();
+        subject = jest.fn();
+        subject.mockImplementation(x => x * x);
     });
 
-    it('calls the function once', () => {
-        const mockOnce = once(mock);
-        mockOnce(1);
-        mockOnce(2);
-        expect(mock).toHaveBeenCalledTimes(1);
-        expect(mock).toHaveBeenLastCalledWith(1);
+    it('does not call the subject function during setup', () => {
+        const onceWrapper = once(subject);
+        expect(subject).not.toHaveBeenCalled();
+    });
+
+    it('only calls the subject once', () => {
+        const onceWrapper = once(subject);
+        onceWrapper();
+        onceWrapper();
+        expect(subject).toHaveBeenCalledTimes(1);
+    });
+
+    it('always returns the first result', () => {
+        const onceWrapper = once(subject);
+        const result1 = onceWrapper(2);
+        const result2 = onceWrapper(3);
+        expect(result1).toBe(4);
+        expect(result2).toBe(4);
     });
 });
