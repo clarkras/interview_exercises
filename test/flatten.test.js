@@ -8,7 +8,15 @@ import * as _ from 'lodash';
  * @return {Array} A new array.
  */
 function flatten(array) {
-  return _.flatten(array);
+  var newArray = [];
+  for (var el of array) {
+    if (Array.isArray(el)) {
+      newArray = newArray.concat(el);
+    } else {
+      newArray.push(el);
+    }
+  }
+  return newArray;
 }
 
 describe('flatten', () => {

@@ -5,6 +5,7 @@ class Counter extends Component {
         value: PropTypes.number.isRequired,
         onIncrement: PropTypes.func.isRequired,
         onDecrement: PropTypes.func.isRequired,
+        onUndo: PropTypes.func.isRequired
     };
 
     incrementIfOdd = () => {
@@ -18,7 +19,7 @@ class Counter extends Component {
     };
 
     render() {
-        const { value, onIncrement, onDecrement } = this.props;
+        const { value, onIncrement, onDecrement, onUndo } = this.props;
         return (
             <p>
                 Clicked: {value} times
@@ -29,6 +30,10 @@ class Counter extends Component {
                 {' '}
                 <button onClick={onDecrement}>
                     -
+                </button>
+                {' '}
+                <button onClick={onUndo}>
+                    undo
                 </button>
                 {' '}
                 <button onClick={this.incrementIfOdd}>

@@ -11,7 +11,16 @@ import * as _ from 'lodash';
  * @return {Function} The new restricted function.
  */
 function once(func) {
-  return _.once(func);
+  var called = false;
+  var value;
+
+  return function(...args) {
+    if (!called) {
+      value = func.call(undefined, ...args);
+      called = true;
+    }
+    return value;
+  };
 }
 
 describe('once', () => {

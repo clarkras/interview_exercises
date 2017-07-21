@@ -7,8 +7,37 @@ import * as _ from 'lodash';
  *
  * @return {Array} A new array.
  */
+
 function flattenDeep(array) {
-  return _.flattenDeep(array);
+  let newArray = [];
+  for (var el of array) {
+    if (Array.isArray(el)) {
+      newArray = newArray.concat(flattenDeep(el));
+    } else {
+      newArray.push(el);
+    }
+  }
+  return newArray;
+}
+
+function whileDeepFlatten(array) {
+  let newArray = array.slice();
+  while(newArray.find(el => Array.isArray(el))) {
+   newArray = flatten(newArray)
+  }
+  return newArray;
+}
+
+function flatten(array) {
+  var newArray = [];
+  for (var el of array) {
+    if (Array.isArray(el)) {
+      newArray = newArray.concat(el);
+    } else {
+      newArray.push(el);
+    }
+  }
+  return newArray;
 }
 
 describe('flattenDeep', () => {
