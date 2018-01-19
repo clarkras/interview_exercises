@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import Counter from './components/Counter';
+import Counter from './Counter';
 
 const initialState = {
   count: 0
